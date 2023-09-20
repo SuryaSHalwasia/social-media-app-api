@@ -8,7 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-origins = ["https://www.google.com"]
+origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -23,7 +23,7 @@ app.add_middleware(
 
 @app.get("/") 
 def get_user():
-    return {"message": "Hello World"}
+    return {"message": "Hello World!"}
 
 
 app.include_router(post.router)
