@@ -1,11 +1,11 @@
 from jose import JWTError, jwt
 from datetime import datetime, timedelta
-import schemas
+import app.schemas as schemas
 from fastapi import Depends, status, HTTPException
 from fastapi.security import OAuth2PasswordBearer
-import database, models
+import app.database as database, app.models as models
 from sqlalchemy.orm import Session
-from config import settings
+from app.config import settings
 #SECRET_KEY (random you put)
 #Algorithm HS256
 #Expiration time of token

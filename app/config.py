@@ -9,6 +9,7 @@ class Settings(BaseSettings):
     DB_PASSWORD: str 
     DB_NAME:str 
     DB_USERNAME: str 
+    DB_TEST:str
 
     SECRET_KEY:str
     ALGO:str

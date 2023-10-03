@@ -6,7 +6,7 @@ import psycopg2 as ps
 
 from psycopg2.extras import RealDictCursor
 
-from config import settings
+from app.config import settings
 SQLALCHEMY_DATABASE_URL = "postgresql://{}:{}@{}:{}/{}".format(settings.DB_USERNAME, settings.DB_PASSWORD,
                                                             settings.DB_HOSTNAME,settings.DB_PORT, 
                                                             settings.DB_NAME)

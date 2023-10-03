@@ -1,10 +1,10 @@
 from fastapi import Depends, Response, HTTPException, status, APIRouter
 from typing import List, Optional
-import models
-from database import get_db
+import app.models as models
+from app.database import get_db
 from sqlalchemy.orm import Session
-from schemas import Vote
-import ouath2
+from app.schemas import Vote
+import app.ouath2 as ouath2
 
 router = APIRouter(prefix="/vote", tags=["Votes"])
 

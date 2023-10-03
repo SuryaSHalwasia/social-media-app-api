@@ -1,10 +1,10 @@
 from fastapi import Depends, Response, HTTPException, status, APIRouter
 from typing import List, Optional
-import models
-from database import get_db
+import app.models as models
+from app.database import get_db
 from sqlalchemy.orm import Session
-from schemas import postCreate, Post, postOut
-import ouath2
+from app.schemas import postCreate, Post, postOut
+import app.ouath2 as ouath2
 from sqlalchemy import func
 from pydantic import parse_obj_as
 
@@ -39,7 +39,7 @@ def create_posts(new_post : postCreate, db : Session = Depends(get_db),
     return post
 
 @router.get("/{id}", response_model=postOut)
-def get_post(id:int, response:Response, db : Session = Depends(get_db)):
+def get_post(id:int, response:Response, db : Session = Depends(get_db), user: int = Depends(ouath2.get_current_user)):
     post = db.query(models.Post).filter(models.Post.id == id).first()
     #cur.execute("SELECT * FROM posts WHERE id = %s", (str(id),))
     #post = cur.fetchone()

@@ -1,14 +1,25 @@
 from fastapi import FastAPI
-import models
-from database import engine
-from routers import user, post, auth, vote
-from config import settings
+import sys
+import os
+
+# Get the parent directory of the current script (tests directory)
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+
+# Add the parent directory to the Python path
+sys.path.append(parent_dir)
+
+
+
+from app.database import engine
+from app.routers import user, post, auth, vote
+from app.config import settings
 
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-origins = ["https://www.google.com"]
+origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -23,7 +34,7 @@ app.add_middleware(
 
 @app.get("/") 
 def get_user():
-    return {"message": "Hello World"}
+    return {"message": "Hello World!"}
 
 
 app.include_router(post.router)
